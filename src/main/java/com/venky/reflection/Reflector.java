@@ -139,19 +139,18 @@ public class Reflector<U, C extends U> {
         	ClassLoader cl = forClass.getClassLoader();
         	if (cl != null){
         		InputStream is = cl.getResourceAsStream(forClass.getName().replace('.', '/')+ ".class");
-        		if (is == null){
-        			throw new IOException("Could not find class " +forClass.getName() + " as resource" );
+        		if (is != null){
+    	            ClassReader reader = new ClassReader(is);
+    	            ClassVisitorImpl mv = new ClassVisitorImpl();
+    	            reader.accept(mv, 0);
+    	
+    	            final Map<String,Integer> mSeq = mv.getMethodSequenceMap();
+    	            Collections.sort(methods,new Comparator<Method>(){
+    	                public int compare(Method o1, Method o2) {
+    	                    return mSeq.get(o1.getName()).compareTo(mSeq.get(o2.getName()));
+    	                }
+    	            });
         		}
-	            ClassReader reader = new ClassReader(is);
-	            ClassVisitorImpl mv = new ClassVisitorImpl();
-	            reader.accept(mv, 0);
-	
-	            final Map<String,Integer> mSeq = mv.getMethodSequenceMap();
-	            Collections.sort(methods,new Comparator<Method>(){
-	                public int compare(Method o1, Method o2) {
-	                    return mSeq.get(o1.getName()).compareTo(mSeq.get(o2.getName()));
-	                }
-	            });
         	}
         } catch (IOException e) {
             e.printStackTrace();
