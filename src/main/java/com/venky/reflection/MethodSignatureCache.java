@@ -5,15 +5,8 @@ import java.lang.reflect.Modifier;
 
 import com.venky.cache.Cache;
 
-public class MethodSignatureCache extends Cache<Method,String>{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5591934380604234015L;
-
-	public MethodSignatureCache(){
-		super(1000,0.2);
-	}
+public class MethodSignatureCache {
+	
 	private static String computeMethodSignature(Method method){
     	StringBuilder sign = new StringBuilder();
     	int modifiers = method.getModifiers();
@@ -30,10 +23,26 @@ public class MethodSignatureCache extends Cache<Method,String>{
 		sign.append(")");
 		return sign.toString();
     }
-    
-	@Override
-	protected String getValue(Method method) {
-		return computeMethodSignature(method);
+	Cache<Method,String> signatures = new Cache<Method,String>() {
+
+		private static final long serialVersionUID = 3032669256312714388L;
+
+		@Override
+		protected String getValue(Method k) {
+			return computeMethodSignature(k);
+		}
+	};
+	Boolean methodHashCodeHasHighCollisions = null;
+	public String get(Method method) {
+		if (methodHashCodeHasHighCollisions == null){
+			methodHashCodeHasHighCollisions = (method.hashCode() == method.getName().hashCode()); //Android Code has this kind of code.
+		}
+		if (methodHashCodeHasHighCollisions) {
+			//Don't cache. hash collisions would result in more computations of the signatures. 
+			return computeMethodSignature(method);
+		}else {
+			return signatures.get(method);
+		}
 	}
 
 }
