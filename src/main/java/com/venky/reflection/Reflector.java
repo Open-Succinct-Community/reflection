@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+
+
 
 public class Reflector<U, C extends U> {
     protected final Class<C> reflectedClass;
@@ -170,49 +170,15 @@ public class Reflector<U, C extends U> {
     	return null;
     }
 
-    private static class ClassVisitorImpl implements ClassVisitor {
-        private Map<String, Integer> methodSequenceMap = new HashMap<String, Integer>();
+    private static class ClassVisitorImpl extends ClassVisitor {
+        public ClassVisitorImpl() {
+			super(Opcodes.ASM4);
+		}
+
+		private Map<String, Integer> methodSequenceMap = new HashMap<String, Integer>();
         
         public Map<String, Integer> getMethodSequenceMap() {
             return methodSequenceMap;
-        }
-
-        public void visit(int version, int access, String name,
-                String signature, String superName, String[] interfaces) {
-            
-            
-        }
-
-        public void visitSource(String source, String debug) {
-            
-            
-        }
-
-        public void visitOuterClass(String owner, String name, String desc) {
-            
-            
-        }
-
-        public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
-            
-            return null;
-        }
-
-        public void visitAttribute(Attribute attr) {
-            
-            
-        }
-
-        public void visitInnerClass(String name, String outerName,
-                String innerName, int access) {
-            
-            
-        }
-
-        public FieldVisitor visitField(int access, String name, String desc,
-                String signature, Object value) {
-            
-            return null;
         }
 
         public MethodVisitor visitMethod(int access, String name, String desc,
@@ -222,10 +188,6 @@ public class Reflector<U, C extends U> {
             return null;
         }
 
-        public void visitEnd() {
-            
-            
-        }
     }
     
     public final List<Method> getMethods(MethodMatcher matcher){
