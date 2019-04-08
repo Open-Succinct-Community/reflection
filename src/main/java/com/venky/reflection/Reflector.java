@@ -234,7 +234,7 @@ public class Reflector<U, C extends U> {
         	if (interfaces.isEmpty()){
         		return null;
         	}else if (interfaces.size() > 1){
-        		throw new RuntimeException ("multiple interfaces implement " + aSuperInfcOrClass.getName());
+        		throw new RuntimeException (c.getName() + " multiple interfaces implement " + aSuperInfcOrClass.getName());
         	}else {
         		return interfaces.get(0);
         	}    		

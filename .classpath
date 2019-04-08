@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="target/classes"/>
-</classpath>
+./target/classes;/home/venky/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar;/home/venky/.m2/repository/com/github/venkatramanm/common/[1.15,)/common-[1.15,).jar;/home/venky/.m2/repository/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar;
