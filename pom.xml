@@ -38,7 +38,7 @@
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.5.1</version>
+                <version>3.8.1</version>
               <configuration>
                   <source>8</source>
                   <target>8</target>
@@ -79,6 +79,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--
+    <asm.version>5.0.3</asm.version>
+    -->
+    <asm.version>7.0</asm.version>
   </properties>
 
   <dependencies>
@@ -96,7 +100,7 @@
     <dependency>
     	<groupId>org.ow2.asm</groupId>
     	<artifactId>asm</artifactId>
-    	<version>5.0.3</version>
+    	<version>${asm.version}</version>
     </dependency>
   </dependencies>
 </project>

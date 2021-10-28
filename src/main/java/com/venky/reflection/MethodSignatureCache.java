@@ -23,7 +23,7 @@ public class MethodSignatureCache {
 		sign.append(")");
 		return sign.toString();
     }
-	Cache<Method,String> signatures = new Cache<Method,String>() {
+	Cache<Method,String> signatures = new Cache<Method,String>(0,0) {
 
 		private static final long serialVersionUID = 3032669256312714388L;
 
