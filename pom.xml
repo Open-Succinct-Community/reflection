@@ -51,7 +51,7 @@
   <artifactId>reflection</artifactId>
   <packaging>jar</packaging>
   <name>reflection</name>
-  <version>1.14-SNAPSHOT</version>
+  <version>1.14</version>
 
   <description>Commonly used programming tasks in java</description>
   <url>http://maven.apache.org</url>
