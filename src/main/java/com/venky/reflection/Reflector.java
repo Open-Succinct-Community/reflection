@@ -172,7 +172,7 @@ public class Reflector<U, C extends U> {
 
     private static class ClassVisitorImpl extends ClassVisitor {
         public ClassVisitorImpl() {
-			super(Opcodes.ASM4);
+			super(Opcodes.ASM7);
 		}
 
 		private Map<String, Integer> methodSequenceMap = new HashMap<String, Integer>();
